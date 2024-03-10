@@ -1,1 +1,2 @@
 # xyztechnologies code
+basic code
