@@ -5,10 +5,10 @@
   become: true
   tasks:
     - name: Apply Kubernetes service
-      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/service.yaml
+      command: /home/ubuntu/kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/service.yaml
 
     - name: Apply Kubernetes deployment
-      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/deployment.yaml
+      command: /home/ubuntu/kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/deployment.yaml
 
     - name: Apply Kubernetes Pod
-      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/pod.yaml
+      command: /home/ubuntu/kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/pod.yaml
