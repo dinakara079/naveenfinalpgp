@@ -1,6 +1,6 @@
 ---
 - name: Deploy to AWS EKS cluster
-  hosts: localhost
+  hosts: pgpnodegroup
   become: true
   tasks:
     - name: Include service YAML
