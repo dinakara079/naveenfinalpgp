@@ -1,4 +1,3 @@
----
 - name: Deploy resources to EKS cluster
   hosts: localhost
   become: true
@@ -18,18 +17,20 @@
   - name: Apply service configuration
     kubernetes:
       state: present
-      api_version: v1
-      kind: Service
-      
+      definition: "{{ service }}"
+      name: "{{ service.metadata.name }}"
+      kubeconfig: /home/ubuntu/.kube/config
+
   - name: Apply pod configuration
     kubernetes:
       state: present
-      api_version: v1
-      kind: Pod
-      
+      definition: "{{ pod }}"
+      name: "{{ pod.metadata.name }}"
+      kubeconfig: /home/ubuntu/.kube/config
+
   - name: Apply deployment configuration
     kubernetes:
       state: present
-      api_version: apps/v1
-      kind: Deployment
-      
+      definition: "{{ deployment }}"
+      name: "{{ deployment.metadata.name }}"
+      kubeconfig: /home/ubuntu/.kube/config
