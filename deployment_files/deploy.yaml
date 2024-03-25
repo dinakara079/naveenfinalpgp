@@ -16,11 +16,10 @@
         file: deployment.yaml
 
     - name: Apply Service
-      shell: /home/ubuntu/kubectl apply -f ./deployment_files/service.yaml
+      shell: /home/ubuntu/kubectl apply -f service.yaml
 
     - name: Apply Pod
-      shell: /home/ubuntu/kubectl apply -f ./deployment_files/pod.yaml
+      shell: /home/ubuntu/kubectl apply -f pod.yaml
 
     - name: Apply Deployment
-      shell: /home/ubuntu/kubectl apply -f ./deployment_files/deployment.yaml
-
+      shell: /home/ubuntu/kubectl apply -f deployment.yaml
