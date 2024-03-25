@@ -5,4 +5,4 @@
   become: true
   tasks:
     - name: Apply Kubernetes resources
-      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/service.yaml && kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/pod.yaml && kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/deployment.yaml
+      command: pwd
