@@ -1,6 +1,10 @@
 - name: Deploy resources to EKS cluster
   hosts: localhost
   become: true
+  vars:
+    service: my-service-name
+    pod: my-pod-name
+    deployment: my-deployment-name
   tasks:
     - name: Include service YAML
       include_vars:
@@ -17,20 +21,20 @@
     - name: Apply service configuration
       kubernetes.core.k8s:
         state: present
-        definition: "{{ Service }}"
-        name: "{{ Service.metadata.name }}"
+        definition: "{{ service }}"
+        name: "{{ service.metadata.name }}"
         kubeconfig: /home/ubuntu/.kube/config
 
     - name: Apply pod configuration
       kubernetes.core.k8s:
         state: present
-        definition: "{{ Pod }}"
-        name: "{{ Pod.metadata.name }}"
+        definition: "{{ pod }}"
+        name: "{{ pod.metadata.name }}"
         kubeconfig: /home/ubuntu/.kube/config
 
     - name: Apply deployment configuration
       kubernetes.core.k8s:
         state: present
-        definition: "{{ Deployment }}"
-        name: "{{ Deployment.metadata.name }}"
+        definition: "{{ deployment }}"
+        name: "{{ deployment.metadata.name }}"
         kubeconfig: /home/ubuntu/.kube/config
