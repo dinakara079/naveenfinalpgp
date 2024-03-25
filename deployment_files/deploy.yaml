@@ -2,35 +2,35 @@
   hosts: localhost
   become: true
   tasks:
-  - name: Include service YAML
-    include_vars:
-      file: ./deployment_files/service.yaml
+    - name: Include service YAML
+      include_vars:
+        file: ./deployment_files/service.yaml
 
-  - name: Include pod YAML
-    include_vars:
-      file: ./deployment_files/pod.yaml
+    - name: Include pod YAML
+      include_vars:
+        file: ./deployment_files/pod.yaml
 
-  - name: Include deployment YAML
-    include_vars:
-      file: ./deployment_files/deployment.yaml
+    - name: Include deployment YAML
+      include_vars:
+        file: ./deployment_files/deployment.yaml
 
-  - name: Apply service configuration
-    kubernetes:
-      state: present
-      definition: "{{ service }}"
-      name: "{{ service.metadata.name }}"
-      kubeconfig: /home/ubuntu/.kube/config
+    - name: Apply service configuration
+      community.kubernetes.k8s:
+        state: present
+        definition: "{{ service }}"
+        name: "{{ service.metadata.name }}"
+        kubeconfig: /home/ubuntu/.kube/config
 
-  - name: Apply pod configuration
-    kubernetes:
-      state: present
-      definition: "{{ pod }}"
-      name: "{{ pod.metadata.name }}"
-      kubeconfig: /home/ubuntu/.kube/config
+    - name: Apply pod configuration
+      community.kubernetes.k8s:
+        state: present
+        definition: "{{ pod }}"
+        name: "{{ pod.metadata.name }}"
+        kubeconfig: /home/ubuntu/.kube/config
 
-  - name: Apply deployment configuration
-    kubernetes:
-      state: present
-      definition: "{{ deployment }}"
-      name: "{{ deployment.metadata.name }}"
-      kubeconfig: /home/ubuntu/.kube/config
+    - name: Apply deployment configuration
+      community.kubernetes.k8s:
+        state: present
+        definition: "{{ deployment }}"
+        name: "{{ deployment.metadata.name }}"
+        kubeconfig: /home/ubuntu/.kube/config
