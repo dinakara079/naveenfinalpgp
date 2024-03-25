@@ -1,5 +1,5 @@
-plugin: ec2
-region: us-east-1
-filters:
-  instance-state-name: running
-  tag: eks:cluster-name: pgpxyzfinal
+all:
+  hosts:
+    ubuntuserver:
+      ansible_host: ec2-52-87-227-237.compute-1.amazonaws.com
+      ansible_user: ubuntu
