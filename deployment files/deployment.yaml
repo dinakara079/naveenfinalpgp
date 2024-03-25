@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgpapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pgpapp
+  template:
+    metadata:
+      labels:
+        app: pgpapp
+    spec:
+      containers:
+        - name: pgpapp-container
+          image: 147217712372.dkr.ecr.us-east-1.amazonaws.com/pgpxyz:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "512Mi"
+            requests:
+              cpu: "0.25"
+              memory: "256Mi"

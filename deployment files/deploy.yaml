@@ -1,0 +1,16 @@
+---
+- name: Deploy on EKS Kubernetes cluster
+  hosts: localhost
+  tasks:
+    - name: Apply Pod manifest
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'pod.yaml') }}"
+    - name: Apply Service manifest
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'service.yaml') }}"
+    - name: Apply Deployment manifest
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'deployment.yaml') }}"
