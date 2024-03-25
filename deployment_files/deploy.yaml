@@ -1,16 +1,35 @@
 ---
-- name: Deploy on EKS Kubernetes cluster
+- name: Deploy resources to EKS cluster
   hosts: localhost
+  become: true
   tasks:
-    - name: Apply Pod manifest
-      k8s:
-        state: present
-        definition: "{{ lookup('file', 'pod.yaml') }}"
-    - name: Apply Service manifest
-      k8s:
-        state: present
-        definition: "{{ lookup('file', 'service.yaml') }}"
-    - name: Apply Deployment manifest
-      k8s:
-        state: present
-        definition: "{{ lookup('file', 'deployment.yaml') }}"
+  - name: Include service YAML
+    include_vars:
+      file: ./deployment_files/service.yaml
+
+  - name: Include pod YAML
+    include_vars:
+      file: ./deployment_files/pod.yaml
+
+  - name: Include deployment YAML
+    include_vars:
+      file: ./deployment_files/deployment.yaml
+
+  - name: Apply service configuration
+    kubernetes:
+      state: present
+      api_version: v1
+      kind: Service
+      
+  - name: Apply pod configuration
+    kubernetes:
+      state: present
+      api_version: v1
+      kind: Pod
+      
+  - name: Apply deployment configuration
+    kubernetes:
+      state: present
+      api_version: apps/v1
+      kind: Deployment
+      
