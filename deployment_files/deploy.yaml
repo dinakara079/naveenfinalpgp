@@ -1,14 +1,8 @@
 ---
 - name: Deploy Kubernetes resources from Git repository
-  hosts: localhost
+  hosts: ubuntuserver
   gather_facts: false
   become: true
   tasks:
-    - name: Apply Kubernetes service
-      command: /home/ubuntu/kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/service.yaml
-
-    - name: Apply Kubernetes deployment
-      command: /home/ubuntu/kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/deployment.yaml
-
-    - name: Apply Kubernetes Pod
-      command: /home/ubuntu/kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/pod.yaml
+    - name: Apply Kubernetes resources
+      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/service.yaml && kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/pod.yaml && kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/deployment.yaml
