@@ -1,8 +1,8 @@
 ---
 - name: Deploy to AWS EKS cluster
-  hosts: pgpxyzfinal
+  hosts: localhost
   become: true
-  tasks:
+  tasks:s
     - name: Include service YAML
       include_vars:
         file: service.yaml
