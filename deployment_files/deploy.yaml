@@ -1,14 +1,14 @@
 ---
 - name: Deploy Kubernetes resources from Git repository
-  hosts: ubuntuserver
+  hosts: localhost
   gather_facts: false
   become: true
   tasks:
-    - name: Clone Git repository
-      git:
-        repo: https://github.com/dinakara079/naveenfinalpgp.git
-        dest: /tmp/pgpfinal
-        version: master
+    - name: Apply Kubernetes service
+      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/service.yaml && kubectl apply -f /tmp/pgpfinal/deployment_files/pod.yaml && kubectl apply -f /tmp/pgpfinal/deployment_files/deployment.yaml
 
-    - name: Apply Kubernetes resources
-      command: kubectl apply -f /tmp/pgpfinal/deployment_files/service.yaml && kubectl apply -f /tmp/pgpfinal/deployment_files/pod.yaml && kubectl apply -f /tmp/pgpfinal/deployment_files/deployment.yaml
+    - name: Apply Kubernetes deployment
+      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/deployment.yaml
+
+    - name: Apply Kubernetes Pod
+      command: kubectl apply -f /home/ubuntu/jenkinsslave/workspace/deployment_code/deployment_files/pod.yaml
