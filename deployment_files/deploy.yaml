@@ -16,10 +16,10 @@
         file: deployment.yaml
 
     - name: Apply Service
-      shell: /home/ubuntu/kubectl apply -f service.yaml
+      shell: /home/ubuntu/kubectl apply -f service.yaml --validate=false
 
     - name: Apply Pod
-      shell: /home/ubuntu/kubectl apply -f pod.yaml
+      shell: /home/ubuntu/kubectl apply -f pod.yaml --validate=false
 
     - name: Apply Deployment
-      shell: /home/ubuntu/kubectl apply -f deployment.yaml
+      shell: /home/ubuntu/kubectl apply -f deployment.yaml --validate=false
