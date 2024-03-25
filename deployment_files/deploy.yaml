@@ -12,7 +12,7 @@
         file: pod.yaml
 
     - name: Include deployment YAML
-      include_vars:s
+      include_vars:
         file: deployment.yaml
 
     - name: Apply Service
