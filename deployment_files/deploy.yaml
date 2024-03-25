@@ -5,15 +5,15 @@
   tasks:
     - name: Include service YAML
       include_vars:
-        file: ./deployment_files/service.yaml
+        file: service.yaml
 
     - name: Include pod YAML
       include_vars:
-        file: ./deployment_files/pod.yaml
+        file: pod.yaml
 
     - name: Include deployment YAML
-      include_vars:
-        file: ./deployment_files/deployment.yaml
+      include_vars:s
+        file: deployment.yaml
 
     - name: Apply Service
       shell: kubectl apply -f ./deployment_files/service.yaml
