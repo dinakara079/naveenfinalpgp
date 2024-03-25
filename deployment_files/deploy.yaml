@@ -1,6 +1,6 @@
 ---
 - name: Deploy Kubernetes resources from Git repository
-  hosts: localhost
+  hosts: 172.31.81.30
   gather_facts: false
   become: true
   tasks:
