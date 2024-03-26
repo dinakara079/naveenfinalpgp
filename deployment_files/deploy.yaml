@@ -22,10 +22,7 @@
       git:
         repo: https://github.com/dinakara079/naveenfinalpgp.git  # Replace with your repository details
         dest: /tmp/pgpfinal  # Adjust the destination directory if needed
-        update: yes
-        force: yes
-        single_branch: true
-        branch: master
+        version: master
 
     - name: Apply Pod
       template:
