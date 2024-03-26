@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: pgpapp-container
-          image: 147217712372.dkr.ecr.us-east-1.amazonaws.com/pgpxyz:{{ IMAGE_TAG }}
+          image: 147217712372.dkr.ecr.us-east-1.amazonaws.com/pgpxyz:latest
           ports:
             - containerPort: 80
           resources:

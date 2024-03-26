@@ -3,8 +3,7 @@
   gather_facts: false
   become: true
   tasks:
-    - debug:
-        msg: "Ansible is working"
+    - debug: msg="Ansible is working"
 
     - name: Clone Git repository
       git:
@@ -14,26 +13,12 @@
 
     - name: Apply eks cluster
       command: aws eks update-kubeconfig --name pgpxyzfinal --region us-east-1
-
+      
     - name: Apply Service
       command: kubectl apply -f /tmp/pgpfinal/deployment_files/service.yaml
-
-    - name: Download pod.yaml.j2 from Git
-      git:
-        repo: https://github.com/dinakara079/naveenfinalpgp.git  # Replace with your repository details
-        dest: /tmp/pgpfinal  # Adjust the destination directory if needed
-        version: master
-
+      
     - name: Apply Pod
-      template:
-        src: /tmp/pgpfinal/deployment_files/pod.yaml.j2
-        dest: /tmp/pgpxyz/deployment_files/pod.yaml
-      vars:
-        IMAGE_TAG: "{{ IMAGE_TAG }}"
-
+      command: kubectl apply -f /tmp/pgpfinal/deployment_files/pod.yaml
+      
     - name: Apply Deployment
-      template:
-        src: /tmp/pgpfinal/deployment_files/deployment.yaml.j2
-        dest: /tmp/pgpxyz/deployment_files/deployment.yaml
-      vars:
-        IMAGE_TAG: "{{ IMAGE_TAG }}"
+      command: kubectl apply -f /tmp/pgpfinal/deployment_files/deployment.yaml
