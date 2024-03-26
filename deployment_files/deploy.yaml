@@ -10,6 +10,7 @@
         repo: https://github.com/dinakara079/naveenfinalpgp.git
         dest: /tmp/pgpfinal
         version: master
+        force: yes
 
     - name: Apply eks cluster
       command: aws eks update-kubeconfig --name pgpxyzfinal --region us-east-1
