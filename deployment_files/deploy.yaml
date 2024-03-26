@@ -16,9 +16,13 @@
       
     - name: Apply Service
       command: kubectl apply -f /tmp/pgpfinal/deployment_files/service.yaml
-
+      
     - name: Apply Pod
       command: kubectl apply -f /tmp/pgpfinal/deployment_files/pod.yaml
+      vars:
+        IMAGE_TAG: "{{ IMAGE_TAG }}"
 
     - name: Apply Deployment
       command: kubectl apply -f /tmp/pgpfinal/deployment_files/deployment.yaml
+      vars:
+        IMAGE_TAG: "{{ IMAGE_TAG }}"
