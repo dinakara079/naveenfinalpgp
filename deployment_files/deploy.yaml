@@ -20,14 +20,14 @@
 
     - name: Apply Pod
       template:
-        src: /tmp/pgpfinal/deployment_files/pod.yaml
+        src: /tmp/pgpfinal/deployment_files/pod.yaml.j2
         dest: /tmp/pgpfinal/deployment_files/pod.yaml
       vars:
         IMAGE_TAG: "{{ IMAGE_TAG }}"
 
     - name: Apply Deployment
       template:
-        src: /tmp/pgpfinal/deployment_files/deployment.yaml
+        src: /tmp/pgpfinal/deployment_files/deployment.yaml.j2
         dest: /tmp/pgpfinal/deployment_files/deployment.yaml
       vars:
         IMAGE_TAG: "{{ IMAGE_TAG }}"
