@@ -17,10 +17,3 @@ spec:
           image: 147217712372.dkr.ecr.us-east-1.amazonaws.com/pgpxyz:latest
           ports:
             - containerPort: 80
-          resources:
-            limits:
-              cpu: "0.25"
-              memory: "128Mi"
-            requests:
-              cpu: "0.25"
-              memory: "128Mi"
