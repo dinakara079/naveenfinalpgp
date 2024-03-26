@@ -11,10 +11,11 @@
         dest: /tmp/pgpfinal
         version: master
 
+    - name: Apply eks cluster
+      command: aws eks update-kubeconfig --name pgpxyzfinal --region us-east-1
+      
     - name: Apply Service
-      command: kubectl apply -f /tmp/pgpfinal/deployment_files/service.yaml --validate=false
-      register: kubectl_result
-      ignore_errors: true  # Ignore errors to handle the case when validation fails
+      command: kubectl apply -f /tmp/pgpfinal/deployment_files/service.yaml
 
     - name: Apply Pod
       command: kubectl apply -f /tmp/pgpfinal/deployment_files/pod.yaml
