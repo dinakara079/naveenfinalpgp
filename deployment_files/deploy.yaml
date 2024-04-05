@@ -22,6 +22,4 @@
         replace: '\g<1>{{ image_tag }}'
 
     - name: Apply Deployment manifest
-      k8s:
-        state: present
-        definition: "{{ lookup('file', 'deployment.yaml') }}"
+      command: kubectl apply -f /tmp/pgpfinal/deployment_files/deployment.yaml
