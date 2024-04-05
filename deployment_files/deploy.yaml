@@ -4,12 +4,20 @@
   gather_facts: false
   become: true
   tasks:
+    
+    - name: Clone Git repository
+      git:
+        repo: https://github.com/dinakara079/naveenfinalpgp.git
+        dest: /tmp/pgpfinal
+        version: master
+        force: yes
+      
     - name: Apply eks cluster
       command: aws eks update-kubeconfig --name pgpxyzfinal --region us-east-1
       
     - name: Modify Deployment manifest with dynamic image tag
       replace:
-        path: deployment.yaml
+        path: /tmp/pgpfinal/deployment_files/deployment.yaml
         regexp: '(image: 147217712372.dkr.ecr.us-east-1.amazonaws.com/pgpxyz:)(.*)$'
         replace: '\g<1>{{ image_tag }}'
 
