@@ -1,6 +1,6 @@
 ---
 - name: Deploy on EKS Kubernetes cluster
-  hosts: localhost
+  hosts: aws
   gather_facts: false
   become: true
   tasks:
