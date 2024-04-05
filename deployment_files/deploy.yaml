@@ -1,25 +1,19 @@
-- name: Check host connectivity
-  hosts: aws 
+---
+- name: Deploy on EKS Kubernetes cluster
+  hosts: localhost
   gather_facts: false
   become: true
   tasks:
-    - debug: msg="Ansible is working"
-
-    - name: Clone Git repository
-      git:
-        repo: https://github.com/dinakara079/naveenfinalpgp.git
-        dest: /tmp/pgpfinal
-        version: master
-        force: yes
-
     - name: Apply eks cluster
       command: aws eks update-kubeconfig --name pgpxyzfinal --region us-east-1
       
-    - name: Apply Service
-      command: kubectl apply -f /tmp/pgpfinal/deployment_files/service.yaml
-      
-    - name: Apply Pod
-      command: kubectl apply -f /tmp/pgpfinal/deployment_files/pod.yaml
-      
-    - name: Apply Deployment
-      command: kubectl apply -f /tmp/pgpfinal/deployment_files/deployment.yaml
+    - name: Modify Deployment manifest with dynamic image tag
+      replace:
+        path: deployment.yaml
+        regexp: '(image: 147217712372.dkr.ecr.us-east-1.amazonaws.com/pgpxyz:)(.*)$'
+        replace: '\g<1>{{ image_tag }}'
+
+    - name: Apply Deployment manifest
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'deployment.yaml') }}"
